@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .hexagon-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .hexagon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+  }
+
+  input[type="range"] {
+    @apply appearance-none bg-purple-600 h-2 rounded-lg;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-6 h-6 bg-white rounded-full cursor-pointer;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.5);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply w-6 h-6 bg-white border-none rounded-full cursor-pointer;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.5);
+  }
+
+  .hexagon {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .hexagon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .hexagon-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .group:hover .hexagon img {
+    transform: scale(1.1);
+  }
+
+  .group:hover .hexagon-overlay {
+    opacity: 1;
+  }
+}
